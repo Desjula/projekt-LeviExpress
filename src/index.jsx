@@ -1,17 +1,16 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider} from 'react-router-dom';
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { App } from "./components/App";
-import { Home } from './components/Home';
+import { Home } from "./components/Home";
 import { Reservation } from "./components/Reservation";
-import './style.css';
+import "./style.css";
 
-export const API_BASE_URL = 'https://apps.kodim.cz/daweb/leviexpress/api';
-
+export const API_BASE_URL = "https://apps.kodim.cz/daweb/leviexpress/api";
 
 const routes = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     children: [
       {
@@ -22,11 +21,10 @@ const routes = createBrowserRouter([
         path: "/reservation",
         element: <Reservation />,
       },
-    ]
+    ],
   },
-
 ]);
 
-createRoot(document.querySelector('#app')).render(
+createRoot(document.querySelector("#app")).render(
   <RouterProvider router={routes} />
 );

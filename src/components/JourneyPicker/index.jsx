@@ -2,14 +2,38 @@ import React, { useEffect, useState } from 'react';
 import mapImage from './img/map.svg';
 import './style.css';
 
-export const JourneyPicker = ({ onJourneyChange }) => (
+export const JourneyPicker = ({ onJourneyChange }) => {
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log("Odesílám fromulář s cestou")
+    console.log('Form submitted:', fromCity, toCity, date);
+  }
+
+const [fromCity, setFromCity] = useState("");
+const [toCity, setToCity] = useState("");
+const [date, setDate] = useState("");
+
+const handleFromCityChange = (e) => {
+  setFromCity(e.target.value);
+};
+
+const handleToCityChange = (e) => {
+  setToCity(e.target.value);
+};
+
+const handleDateChange = (e) => {
+  setDate(e.target.value);
+};
+
+return(
   <div className="journey-picker container">
     <h2 className="journey-picker__head">Kam chcete jet?</h2>
     <div className="journey-picker__body">
-      <form className="journey-picker__form">
+      <form className="journey-picker__form" onSubmit={handleSubmit}>
         <label>
           <div className="journey-picker__label">Odkud:</div>
-          <select>
+          <select value={fromCity} onChange={handleFromCityChange}>
             <option value="">Vyberte</option>
             <option value="mesto01">Město 01</option>
             <option value="mesto02">Město 02</option>
@@ -20,7 +44,7 @@ export const JourneyPicker = ({ onJourneyChange }) => (
         </label>
         <label>
           <div className="journey-picker__label">Kam:</div>
-          <select>
+          <select value={toCity} onChange={handleToCityChange}>
             <option value="">Vyberte</option>
             <option value="mesto01">Město 01</option>
             <option value="mesto02">Město 02</option>
@@ -31,7 +55,7 @@ export const JourneyPicker = ({ onJourneyChange }) => (
         </label>
         <label>
           <div className="journey-picker__label">Datum:</div>
-          <select>
+          <select value={date} onChange={handleDateChange}>
             <option value="">Vyberte</option>
             <option value="datum01">Datum 01</option>
             <option value="datum02">Datum 02</option>
@@ -52,4 +76,4 @@ export const JourneyPicker = ({ onJourneyChange }) => (
       <img className="journey-picker__map" src={mapImage} />
     </div>
   </div>
-);
+)};
